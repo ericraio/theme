@@ -81,10 +81,10 @@
       {% if settings.product_display_second_image %}{% if product.images[1] %}<img src="{{ product.images[1] | product_img_url: 'medium' }}" class="second--image" alt="{{ product.title }}" />{% endif %}{% endif %}
       {% if product.compare_at_price > product.price %}
         {% if settings.show_saved_amount %}
-      	  {% if settings.product_layout_option == "product_one" %}
-      		<div class="save_amount_one">SAVE <span class='money'>{{ product.compare_at_price | minus: product.price | money }}</span></div>
+          {% if settings.product_layout_option == "product_one" %}
+          <div class="save_amount_one">SAVE <span class='money'>{{ product.compare_at_price | minus: product.price | money }}</span></div>
           {% endif %}
-      	{% endif %}
+        {% endif %}
       {% endif %}
     </a>
   </div>
@@ -109,10 +109,10 @@
             <div class="save_amount_two">SAVE <span class='money'>{{ product.compare_at_price | minus: product.price | money }}</span></div>
           {% endif %}
           {% if settings.product_layout_option == "product_three" %}
-          	<div class="save_amount_three">-{{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price  | round: 2  }}%</div>
+            <div class="save_amount_three">-{{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price  | round: 2  }}%</div>
           {% endif %}
-      	  {% if settings.product_layout_option == "product_four" %}
-          	<div class="save_amount_four">SAVE {{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price  | round: 2  }}%</div>
+          {% if settings.product_layout_option == "product_four" %}
+            <div class="save_amount_four">SAVE {{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price  | round: 2  }}%</div>
           {% endif %}
         {% endif %}
       {% endif %}
@@ -129,55 +129,55 @@
     {% if settings.enable_product_progressbar and settings.show_progressbar_on_cands and product.available %}
       {% assign inventory_quantity = 0 %}
       {% for variant in product.variants %}
-    	{% capture inventory_quantity %}
-    	  {{ inventory_quantity | plus: variant.inventory_quantity }}
-      	{% endcapture %}
+      {% capture inventory_quantity %}
+        {{ inventory_quantity | plus: variant.inventory_quantity }}
+        {% endcapture %}
       {% endfor %}
       {% if quantity == 0 %}
         {% assign quantity = 100 %}
-      {% else %}	
+      {% else %}  
         {% assign quantity = quantity | times: 1 %}
       {% endif %}
       {% if qty_sold == 0 %}
-    	{% assign defaultSold = quantity | times: 80 | divided_by: 100 %}
-    	{% assign totalSold = inventory_quantity | plus: defaultSold %}
-    	{% if totalSold >= quantity %}
-    	  {% assign defaultSold = quantity | times: 60 | divided_by: 100 %}
-    	  {% assign totalSold = inventory_quantity | plus: defaultSold %}
-    	  {% if totalSold >= quantity %}
-    		{% assign defaultSold = quantity | times: 40 | divided_by: 100 %}
-    		{% assign totalSold = inventory_quantity | plus: defaultSold %}
-    		{% if totalSold >= quantity %}
-    		  {% assign defaultSold = quantity | times: 20 | divided_by: 100 %}
-    		  {% assign totalSold = inventory_quantity | plus: defaultSold %}
-    		  {% if totalSold >= quantity %}
-    			{% assign totalSold = inventory_quantity | times: 1 %}
-    			{% if totalSold >= quantity %}
-    			  {% assign lastTwo = totalSold | slice: -2, 2 %}
-    			  {% assign remaining = totalSold | replace: lastTwo, '' %}
-    			  {% if lastTwo != '00' %}
-    				{% assign remaining = remaining | plus: 1 %}
-    				{% assign remaining = remaining | append: '00' %}
-    				{% assign quantity = remaining | times: 1 %}
-    			  {% else %}	
-    				{% assign quantity = quantity | plus: totalSold | times: 1 %}
-    			  {% endif %}
-    			{% endif %}
-    		  {% endif %}
-    		{% endif %}
-    	  {% endif %}
-    	{% endif %}
+      {% assign defaultSold = quantity | times: 80 | divided_by: 100 %}
+      {% assign totalSold = inventory_quantity | plus: defaultSold %}
+      {% if totalSold >= quantity %}
+        {% assign defaultSold = quantity | times: 60 | divided_by: 100 %}
+        {% assign totalSold = inventory_quantity | plus: defaultSold %}
+        {% if totalSold >= quantity %}
+        {% assign defaultSold = quantity | times: 40 | divided_by: 100 %}
+        {% assign totalSold = inventory_quantity | plus: defaultSold %}
+        {% if totalSold >= quantity %}
+          {% assign defaultSold = quantity | times: 20 | divided_by: 100 %}
+          {% assign totalSold = inventory_quantity | plus: defaultSold %}
+          {% if totalSold >= quantity %}
+          {% assign totalSold = inventory_quantity | times: 1 %}
+          {% if totalSold >= quantity %}
+            {% assign lastTwo = totalSold | slice: -2, 2 %}
+            {% assign remaining = totalSold | replace: lastTwo, '' %}
+            {% if lastTwo != '00' %}
+            {% assign remaining = remaining | plus: 1 %}
+            {% assign remaining = remaining | append: '00' %}
+            {% assign quantity = remaining | times: 1 %}
+            {% else %}  
+            {% assign quantity = quantity | plus: totalSold | times: 1 %}
+            {% endif %}
+          {% endif %}
+          {% endif %}
+        {% endif %}
+        {% endif %}
+      {% endif %}
       {% else %}
-    	{% assign defaultSold = qty_sold | times: 1 %}
-    	{% if settings.display_quantity_count_real %}
-    	  {% assign totalSold = inventory_quantity | plus: defaultSold %}
-    	{% else %}	
-    	  {% assign totalSold = defaultSold %}
-    	{% endif %}
-    	{% if totalSold >= quantity %}
-    	  {% assign plus_qty = totalSold | minus: quantity | plus: 3 %}
-    	  {% assign quantity = quantity | plus: plus_qty %}
-    	{% endif %}
+      {% assign defaultSold = qty_sold | times: 1 %}
+      {% if settings.display_quantity_count_real %}
+        {% assign totalSold = inventory_quantity | plus: defaultSold %}
+      {% else %}  
+        {% assign totalSold = defaultSold %}
+      {% endif %}
+      {% if totalSold >= quantity %}
+        {% assign plus_qty = totalSold | minus: quantity | plus: 3 %}
+        {% assign quantity = quantity | plus: plus_qty %}
+      {% endif %}
       {% endif %}
       {% if display_limited %}
         {% assign displayquantity = displayquantity | times: 1 %}
@@ -185,7 +185,7 @@
           {% assign quantity = displayquantity | plus: 100 %}
           {% assign totalSold = displayquantity | plus: 100 | minus: displayquantity %}
         {% endif %}
-    	{% unless product.available %}
+      {% unless product.available %}
           {% assign totalSold = quantity %}
         {% endunless %}
         {% assign qtyleft = quantity | minus: totalSold %}
@@ -287,7 +287,7 @@
                   {% endif %}
                 {% endfor %}
               </select>
-			  {% if settings.variant_swatch %}
+        {% if settings.variant_swatch %}
                 {% if product.available and product.variants.size > 1 %}
                   {% for option in product.options %}
                     {% include 'swatch' with option %}
@@ -305,13 +305,13 @@
              <div class="grid product--option addtocart--button">
               {% if settings.display_quantity_dropdown %}
               <div class="grid__item large--one-half small-width">
-              	<div class="header">
+                <div class="header">
                   {{ 'products.product.quantity' | t }}
                 </div>
                 <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector" />
               </div>
               {% else %}
-              	<input type="hidden" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector" />
+                <input type="hidden" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector" />
               {% endif %}
               <div class="grid__item large--one-half {% if settings.display_quantity_dropdown %}no--padding{% endif %} mobile-full">
                 <div class="header ">&nbsp;</div>
@@ -347,9 +347,9 @@
                     <img src="{{ 'cart-button-icon.png' | asset_url }}" alt="+" class="no-border ratina-img addIcon" />
                   {% endif %}
                   {% if settings.add_to_cart_button_text != "" %}
-                  	<span id="AddToCartText">{{ settings.add_to_cart_button_text }}</span>
+                    <span id="AddToCartText">{{ settings.add_to_cart_button_text }}</span>
                   {% else %}
-                  	<span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+                    <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
                   {% endif %}
                 </button>
                  {% if settings.enable_checkout_icon %}
@@ -365,8 +365,8 @@
               <div class="grid">
                 <div class="grid__item large--one-whole progress--bar">
                  {% if settings.enable_progressbar_text %}
-               		<div class="header">{{ settings.enable_progressbar_text_value }}</div>                
-              	{% endif %}
+                  <div class="header">{{ settings.enable_progressbar_text_value }}</div>                
+                {% endif %}
                   {% assign inventory_quantity = 0 %}
                   {% for variant in product.variants %}
                     {% capture inventory_quantity %}
@@ -375,7 +375,7 @@
                   {% endfor %}
                   {% if quantity == 0 %}
                     {% assign quantity = 100 %}
-                  {% else %}	
+                  {% else %}  
                     {% assign quantity = quantity | times: 1 %}
                   {% endif %}
                   {% if qty_sold == 0 %}
@@ -399,7 +399,7 @@
                                 {% assign remaining = remaining | plus: 1 %}
                                 {% assign remaining = remaining | append: '00' %}
                                 {% assign quantity = remaining | times: 1 %}
-                              {% else %}	
+                              {% else %}  
                                 {% assign quantity = quantity | plus: totalSold | times: 1 %}
                               {% endif %}
                             {% endif %}
@@ -411,7 +411,7 @@
                     {% assign defaultSold = qty_sold | times: 1 %}
                     {% if settings.display_quantity_count_real %}
                       {% assign totalSold = inventory_quantity | plus: defaultSold %}
-                    {% else %}	
+                    {% else %}  
                       {% assign totalSold = defaultSold %}
                     {% endif %}
                     {% if totalSold >= quantity %}
@@ -432,7 +432,7 @@
                     <div class="progress progress-striped" data-qty="{{ quantity }}" data-total="{{ totalSold }}"><div class="progress-bar"></div></div>
                     <p class="remaining--text">{{ 'products.progress_bar.limited_edition' | t }}: {{ 'products.progress_bar.only' | t }} <span class="danger">{% if qtyleft > 0 %}{{ qtyleft }}{% else %}{{ limited_default }}{% endif %}</span> {{ 'products.progress_bar.left' | t }}.</p>
                   {% else %}
-                  	{% unless product.available %}
+                    {% unless product.available %}
                       {% assign totalSold = quantity %}
                     {% endunless %}
                     <div class="progress progress-striped" data-qty="{{ quantity }}" data-total="{{ totalSold }}"><div class="progress-bar"></div></div>
@@ -443,7 +443,7 @@
             {% endif %}
             {% if settings.enable_countdown_timer %}
               {% if display_countdown %}
-              	{% if settings.timer_model == "timer_model_1" %}
+                {% if settings.timer_model == "timer_model_1" %}
                   <div id="countdown-timer-{{ product.id }}_{{ type }}" class="countdown-timer" data-expire="{{ expire }}" data-published="{{ startdate }}">
                     {% if settings.countdown_timer_text  != "" %}<div class="header">{{ settings.countdown_timer_text }}</div>{% endif %}
                     <ul class="countdown clearfix"><li><span class="days"></span><p class="days_ref"></p></li><li><span class="hours"></span><p class="hours_ref"></p></li><li><span class="minutes"></span><p class="minutes_ref"></p></li><li><span class="seconds"></span><p class="seconds_ref"></p></li></ul>
@@ -451,7 +451,7 @@
                 {% endif %}
                 {% if settings.timer_model == "timer_model_2" %}
                   <div id="countdown-timer-{{ product.id }}_{{ type }}" class="clock" data-expire="{{ expire }}" data-published="{{ startdate }}"></div>
-          	  	{% endif %}
+                {% endif %}
               {% endif %}
             {% endif %}
             {% if settings.topreasons_display %}{% include 'top-reasons' %}{% endif %}

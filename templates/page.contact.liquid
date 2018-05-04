@@ -12,7 +12,7 @@
         </h1>
       </div>
       {% if settings.help_text_contact != "" %}
-      	<div class="help-text-contact">{{ settings.help_text_contact }}</div>
+        <div class="help-text-contact">{{ settings.help_text_contact }}</div>
       {% endif %}
       <div class="grid">
         {% if settings.display_contact_form %}
@@ -62,7 +62,7 @@
             {% if settings.display_live_chat %}
               <p class="bold-text"><i class="fa fa-comments"></i> <a href="{{ settings.live_chat_url }}">{{ 'contact.form.live_chat' | t }}</a></p>
             {% endif %}
-            {% if settings.physical_mailing_address != "" %}	
+            {% if settings.physical_mailing_address != "" %}  
               <p class="address-contact">{% if settings.physical_mailing_address_lable != "" %} {{ settings.physical_mailing_address_lable }} {% else %}{{ 'contact.form.mailing_address' | t }}{% endif %}</p>
               <p>{{ settings.physical_mailing_address }}</p>
             {% endif %}

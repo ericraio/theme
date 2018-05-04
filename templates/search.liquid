@@ -121,22 +121,22 @@
       </div>
     </div>
   {% else %}
-  	<div class="page--search">
+    <div class="page--search">
       {% paginate search.results by 20 %}
-      	{% assign type = "s" %}
-      	<div class="grid">
+        {% assign type = "s" %}
+        <div class="grid">
           {% for product in search.results %}
             {% include 'product-grid-item' with type %}
             {% cycle '','','','</div><div class="grid">' %}
           {% endfor %}
-      	</div>
-      	{% if paginate.pages > 1 %}
+        </div>
+        {% if paginate.pages > 1 %}
           <hr>
           <div class="pagination">
             {{ paginate | default_pagination | replace: '&laquo; Previous', '<i class="fa fa-angle-left"></i>' | replace: 'Next &raquo;', '<i class="fa fa-angle-right"></i>' }}
           </div>
         {% endif %}
       {% endpaginate %}
-  	</div>
+    </div>
   {% endif %}
 </div>

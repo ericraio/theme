@@ -1,13 +1,13 @@
 <ul class="menu social-media-cc">
   {% if settings.footer_checkout_display %}
     {% if settings.ff-checkout-visa-enable %}
-  	<li style="margin-left:0px;" ><a href="javascript:void(0);">
+    <li style="margin-left:0px;" ><a href="javascript:void(0);">
       <img src="{{ 'visa.png' | asset_url }}" class="cart-payment-icon no-border ratina-img" />
       </a></li>
     {% endif %}
     {% if settings.ff-checkout-mastercard-enable %}
     <li><a href="javascript:void(0);">
-      	<img src="{{ 'mastercard.png' | asset_url }}" class="cart-payment-icon no-border ratina-img" />
+        <img src="{{ 'mastercard.png' | asset_url }}" class="cart-payment-icon no-border ratina-img" />
         </a></li>
     {% endif %}
     {% if settings.ff-checkout-americanexp-enable %}

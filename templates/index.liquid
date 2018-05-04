@@ -7,31 +7,31 @@
 
 {% for position in positions %}
   {% if position == "2" %}
-	{% include 'homepage-review' %}
+  {% include 'homepage-review' %}
   {% endif %}
 
   {% if position == "3" %}
-	{% include 'homepage-marketing' %}
+  {% include 'homepage-marketing' %}
   {% endif %}
 
   {% if position == "4" %}
-	{% include 'homepage-featured' %}
+  {% include 'homepage-featured' %}
   {% endif %}
 
   {% if position == "5" %}
-	{% include 'homepage-carousel' %}
+  {% include 'homepage-carousel' %}
   {% endif %}
 
   {% if position == "6" %}
-	{% include 'homepage-promotion' %}
+  {% include 'homepage-promotion' %}
   {% endif %}
 
   {% if position == "7" %}
-	{% include 'homepage-content-1' %}
+  {% include 'homepage-content-1' %}
   {% endif %}
 
   {% if position == "8" %}
-	{% include 'homepage-content-2' %}
+  {% include 'homepage-content-2' %}
   {% endif %}
 {% endfor %}
 {% assign show-all-pro = settings.show-all-product-home %}

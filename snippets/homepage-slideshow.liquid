@@ -1,7 +1,7 @@
 {% if settings.enabled_slideshow %}
 
   {% if settings.slideshow_full_width %}
-  	<div class="one-whole slideshow">
+    <div class="one-whole slideshow">
   {% else %}
     <div class="wrapper slideshow">
   {% endif %}
@@ -40,7 +40,7 @@
         {% assign subheading = 'slide_' | append: i | append: '_subheading' %}
         {% assign button_text = 'slide_' | append: i | append: '_button_text' %}
         {% assign text_align = 'slide_' | append: i | append: '_text_align' %}
-      	{% assign text_align_v = 'slide_' | append: i | append: '_text_align_v' %}
+        {% assign text_align_v = 'slide_' | append: i | append: '_text_align_v' %}
         {% if settings[enabled] %}
           <li>
             <a href="{{ settings[link] }}"><img src="{{ image | asset_img_url: 'master' }}" alt="{{ settings[alt_text] | escape }}" /></a>

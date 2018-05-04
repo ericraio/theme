@@ -4,24 +4,24 @@
 <div id="recently-viewed-container" class="recently--viewed-products">
   <div class="wrapper">
     <h2 class="title">{{settings.recent_products_heading}}</h2>
-  	<div class="owl-carousel" id="recently-viewed-products"></div>
+    <div class="owl-carousel" id="recently-viewed-products"></div>
   </div>
 </div>
 {% raw %}
 <script id="recently-viewed-product-template" type="text/x-jquery-tmpl">
 <div class="grid__item large--one-quarter medium--one-half">
   <div class="grid__product-image text-center">
-  	<a href="${url}" class="grid__image">
+    <a href="${url}" class="grid__image">
       <img alt="${title}" src="${Shopify.Products.resizeImage(featured_image, "large")}" class="main-image img-responsive" />
-  	</a>
+    </a>
   </div>
   <div class="grid__product-content text-center">
-  	<div class="price-section">
+    <div class="price-section">
       {{if compare_at_price > price}}
-      	<strike class="on_price">${compare_at_price}</strike>
+        <strike class="on_price">${compare_at_price}</strike>
         <span class="price on_price">${price}</span>
       {{else}}
-      	<span class="price on_price no-compare-price">${price}</span>
+        <span class="price on_price no-compare-price">${price}</span>
       {{/if}}
     </div>
     <p class="h5">
@@ -60,7 +60,7 @@
         });
       } else {
         $('#recently-viewed-container').remove();
-  		$('.recently--viewed-hr').remove(); 
+      $('.recently--viewed-hr').remove(); 
       }
     }
   });

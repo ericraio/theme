@@ -23,7 +23,7 @@
           <label for="CustomerPassword" class="hidden-label">{{ 'customer.login.password' | t }}</label>
           <input type="password" value="" name="customer[password]" id="CustomerPassword" class="input-full{% if form.errors contains 'password' %} error{% endif %} form-control" placeholder="{{ 'customer.login.password' | t }}">
         {% endif %}
-		<div class="clearfix last-row-login">
+    <div class="clearfix last-row-login">
           <label><input type="checkbox" class="form-control-checkbox" name="customer[remember]"> Remember me</label>
           <div id="forgot_password">
             {% if form.password_needed %}

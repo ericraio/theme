@@ -17,19 +17,19 @@
   {% if settings.collection_tags %}
     {% for tag in collection.all_tags %}
       {% if forloop.first %}
-  		<label for="CollectionTags">{{ 'collections.sorting.browse' | t }}:</label>
+      <label for="CollectionTags">{{ 'collections.sorting.browse' | t }}:</label>
         <select name="CollectionTags" id="CollectionTags">
           <option {% unless current_tags %}selected="selected"{% endunless %} value="{% if collection.handle == "all" %}/collections/all{% else %}{{ collection.url }}{% endif %}">{{ 'collections.sorting.all_items' | t }}</option>
       {% endif %}          
 
       {% unless excludeTags contains tag %}
         {% unless tag contains "estimateend-" or tag contains "estimatestart-"  or tag contains "quantity-" or tag contains "quantitysold-" or tag contains "limited-default-" or tag contains "expire-" or tag contains "checklist-" or tag contains "personalisation-" or tag contains "personalization-" or tag contains "sizechart-" or tag contains "badge-" or tag contains "badgestyle-" or tag contains "displayquantity-" or tag contains "surfing_cross-" or tag contains "rr_track_"  %}
-      	  <option {% if current_tags contains tag %}selected="selected"{% endif %} value="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}">{{ tag | capitalize }}</option>
+          <option {% if current_tags contains tag %}selected="selected"{% endif %} value="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}">{{ tag | capitalize }}</option>
         {% endunless %}
       {% endunless %}
 
       {% if forloop.last %}
-    	</select>
+      </select>
       {% endif %}
     {% endfor %}
   {% endif %}

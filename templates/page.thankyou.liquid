@@ -9,17 +9,17 @@
 
 {% if collections[settings.thankyou_collection].products_count > 0 %}
 <div class="collection">
-	<div class="row">
+  <div class="row">
 {% for product in collections[settings.thankyou_collection].products limit: 4 %}
-		<div class="thmb">
-			<div class="image text-center">
-				<a href="{{ shop.url }}/{{ product.url }}"><img src="{{ product.images.first | product_img_url: 'medium' }}" border="0" /></a>
-			</div>
-			<div class="text"><h5>{{ product.title }}</h5></div>
-		</div>
-	{% cycle '','','','</div><div class="row">' %}
+    <div class="thmb">
+      <div class="image text-center">
+        <a href="{{ shop.url }}/{{ product.url }}"><img src="{{ product.images.first | product_img_url: 'medium' }}" border="0" /></a>
+      </div>
+      <div class="text"><h5>{{ product.title }}</h5></div>
+    </div>
+  {% cycle '','','','</div><div class="row">' %}
 {% endfor %}
-	</div>
+  </div>
   <style type="text/css">
     .thmb {
       display: inline-block;

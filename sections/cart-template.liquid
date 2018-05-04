@@ -49,13 +49,13 @@
           {% for item in cart.items %}
           {% assign limited_qty = 0 %}
           {% for tag in item.product.tags %}
-          	{% if tag contains "limited-quantity-" %}{% capture limited_qty %}{{ tag | replace: "limited-quantity-","" }}{% endcapture %}{% endif %}
-          	{% if tag contains "estimateend-" %}{% capture estimateStartDateTmp %}{{ tag | replace: "estimateend-","" }}{% endcapture %}{% endif %}
-          	{% assign estimateStartDateTmp = estimateStartDateTmp | plus: 0 %}
-          	{% assign estimateStartDate = estimateStartDate | plus: 0 %}
-          	{% if estimateStartDateTmp > estimateStartDate %}
-          	  {% assign estimateStartDate = estimateStartDateTmp %}
-          	{% endif %}
+            {% if tag contains "limited-quantity-" %}{% capture limited_qty %}{{ tag | replace: "limited-quantity-","" }}{% endcapture %}{% endif %}
+            {% if tag contains "estimateend-" %}{% capture estimateStartDateTmp %}{{ tag | replace: "estimateend-","" }}{% endcapture %}{% endif %}
+            {% assign estimateStartDateTmp = estimateStartDateTmp | plus: 0 %}
+            {% assign estimateStartDate = estimateStartDate | plus: 0 %}
+            {% if estimateStartDateTmp > estimateStartDate %}
+              {% assign estimateStartDate = estimateStartDateTmp %}
+            {% endif %}
           {% endfor %}
           {% assign limited_qty = limited_qty | times: 1 %}
           <tr class="cart__row table__section">
@@ -110,7 +110,7 @@
             </td>
           </tr>
           <tr class="large--hide cart-item--title">
-          	<td colspan="5">
+            <td colspan="5">
               <a href="{{ item.url }}">
                 {{ item.product.title }}
               </a>
@@ -165,10 +165,10 @@
       <div class="cart__row">
         
         {% if settings.cart_topreasons_display %}
-      		<div class="grid__item one-half medium-down--one-whole cart__row__topreasons">
-        		{% include 'top-reasons' %}
-      		</div>
-      	{% endif %}  
+          <div class="grid__item one-half medium-down--one-whole cart__row__topreasons">
+            {% include 'top-reasons' %}
+          </div>
+        {% endif %}  
         
         <div class="grid__item one-half medium-down--one-whole text-right{% if settings.cart_notes_enable %} one-half medium-down--one-whole{% endif %}">
           {% if cart.total_discounts > 0 %}
@@ -195,7 +195,7 @@
                   {% assign estimateStartDate = settings.delivery_end %}
                 {% endif %}
                 <b><span id="estimateTimer" class="estimate-timer--time"></span> &nbsp;to get it by &nbsp;<span class="dateEstimate" data-date="{{ estimateStartDate }}"></span></b>
-<!-- 				<b><span id="estimateTimer_cart" class="estimate-timer--time estimateTimer_cart asdfghjkl"></span> &nbsp;to get it by &nbsp;<span class="dateEstimate" data-date="{{ estimateStartDate }}"></span></b> -->
+<!--        <b><span id="estimateTimer_cart" class="estimate-timer--time estimateTimer_cart asdfghjkl"></span> &nbsp;to get it by &nbsp;<span class="dateEstimate" data-date="{{ estimateStartDate }}"></span></b> -->
                 <div class="asdfghjkl"></div>
               </div>
               <div class="margin--bottom-30"></div>
@@ -215,13 +215,13 @@
       </div>
       
       {% if settings.cart_help %}
-      	<hr />
+        <hr />
         <div class="cart__row__pagecontent">
           {{ pages[settings.cart_help_page].content }}
-      	</div>
+        </div>
       {% endif %}
       {% if settings.cart_related and collections[settings.cart_related_collection].all_products_count != "" and collections[settings.cart_related_collection].all_products_count > 0 %}
-      	{% assign type = "r" %}
+        {% assign type = "r" %}
         <hr />
         <div class="cart__row__related">
           <h2 class="title">{{ 'cart.general.related_title' | t }}</h2>
@@ -289,7 +289,7 @@
       "label": "Secondary cart button font",
       "default": "#6e797a"
     },
-	{
+  {
       "type": "color",
       "id": "sec_bnt_font_hover",
       "label": "Secondary cart button font on mouse hover",

@@ -23,7 +23,7 @@
       {% if downcased_option contains 'color' or downcased_option contains 'colour' %}
         {% assign is_color = true %}
       {% endif %}
-	  {% if downcased_option contains 'size' %}
+    {% if downcased_option contains 'size' %}
         {% assign is_size = true %}
       {% endif %}
     {% endif %}
@@ -49,9 +49,9 @@
           <div data-value="{{ value | escape }}" class="swatch-element {% if is_color %}color {% endif %}{{ value | handle }} {% if variant.available %}available{% else %}soldout{% endif %}">
             {% if is_color %}
               {% if variant.available %}
-              	<div class="tooltip">{{ value }}</div>
+                <div class="tooltip">{{ value }}</div>
               {% else %}
-            	<div class="tooltip">Currently out of stock</div>
+              <div class="tooltip">Currently out of stock</div>
               {% endif %}
             {% else %}
               {% unless variant.available %}

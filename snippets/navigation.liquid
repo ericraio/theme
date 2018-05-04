@@ -29,11 +29,11 @@
     {% if settings[custom_link_heading] != "" %}
       {% if settings[custom_link_collection] != "" %}
         {% capture customLinkHTML %}
-		{{ customLinkHTML }}
-		<div class="section-wrapper-custom-links">
+    {{ customLinkHTML }}
+    <div class="section-wrapper-custom-links">
           <p><a href="{{ settings[custom_link_collection] }}">{{ settings[custom_link_heading] }}<span class="separator"> » </span></a></p>
         </div>
-		{% endcapture %}
+    {% endcapture %}
       {% endif %}
     {% endif %}
   {% endfor %}
@@ -42,40 +42,40 @@
 {% if settings.enable_megamenu %}
   {% for i in (1..5) %}
     {% assign enable = 'megamenu_' | append:i  | append:"_enable" %}
-	{% if settings[enable] %}
+  {% if settings[enable] %}
       {% assign text = 'megamenu_' | append:i  | append:"_text" %}
       {% assign default_collection = 'megamenu_' | append:i  | append:"_default_collection" %}
-	  {% assign enable_icon = 'megamenu_' | append:i  | append:"_icon_enable" %}
+    {% assign enable_icon = 'megamenu_' | append:i  | append:"_icon_enable" %}
       {% assign totalEnable = 0 %}
-	  {% assign totalEnableValidate = 0 %}
- 	  {% for j in (1..9) %}
-		{% assign submenu_heading = 'megamenu_' | append:i | append:"_submenu_" | append:j | append:"_heading"  %}
+    {% assign totalEnableValidate = 0 %}
+    {% for j in (1..9) %}
+    {% assign submenu_heading = 'megamenu_' | append:i | append:"_submenu_" | append:j | append:"_heading"  %}
         {% assign submenu_menu = 'megamenu_' | append:i | append:"_submenu_" | append:j %}
-		{% if settings[submenu_menu] != "" %}
-			{% assign totalEnableValidate = totalEnableValidate | plus: 1 %}	
-		{% endif %}
-	  {% endfor %}	
-	
-	{% assign megamenuwidthclass = 'widthfull' %}
-	 {% assign menuwrapperwidthclass = 'wraperwidthfull' %}
-	 {% assign menuprodlimit = 0 %}
-	 {% if totalEnableValidate == 1 %}
-		{% assign menuprodlimit = 3 %}
-	 {% elsif totalEnableValidate == 2 %}
-		{% assign menuprodlimit = 2 %}
+    {% if settings[submenu_menu] != "" %}
+      {% assign totalEnableValidate = totalEnableValidate | plus: 1 %}  
+    {% endif %}
+    {% endfor %}  
+  
+  {% assign megamenuwidthclass = 'widthfull' %}
+   {% assign menuwrapperwidthclass = 'wraperwidthfull' %}
+   {% assign menuprodlimit = 0 %}
+   {% if totalEnableValidate == 1 %}
+    {% assign menuprodlimit = 3 %}
+   {% elsif totalEnableValidate == 2 %}
+    {% assign menuprodlimit = 2 %}
   {% elsif totalEnableValidate == 3 %}
-		{% assign menuprodlimit = 1 %}
-	{% elsif totalEnableValidate == 5 %}
-		{% assign menuprodlimit = 3 %}
-	 {% elsif totalEnableValidate == 6 %}
-		{% assign menuprodlimit = 2 %}
+    {% assign menuprodlimit = 1 %}
+  {% elsif totalEnableValidate == 5 %}
+    {% assign menuprodlimit = 3 %}
+   {% elsif totalEnableValidate == 6 %}
+    {% assign menuprodlimit = 2 %}
  {% elsif totalEnableValidate == 7 %}
-		{% assign menuprodlimit = 1 %}
+    {% assign menuprodlimit = 1 %}
 {% else %}
 {% assign menuprodlimit = 0 %}
-	{% endif %}
+  {% endif %}
 
-	
+  
       <li class="site-nav--has-dropdown megamenu--links" aria-haspopup="true">
         <a href="{% if default_collection != '' and settings.megamenu_default_link %}/collections/{{ collections[settings[default_collection]].handle }}{% else %}javascript:void(0);{% endif %}" class="megamenu-nav site-nav__link">
           {{ settings[text] }}
@@ -89,8 +89,8 @@
                 {% assign submenu_heading = 'megamenu_' | append:i | append:"_submenu_" | append:j | append:"_heading"  %}
                 {% assign submenu_menu = 'megamenu_' | append:i | append:"_submenu_" | append:j %}
                 {% if settings[submenu_menu] != "" %}
-              	 
-              	  {% assign totalEnable = totalEnable | plus: 1 %}
+                 
+                  {% assign totalEnable = totalEnable | plus: 1 %}
                   <div class="section-wrapper">
                      {% if settings[submenu_heading] != "" %}
                        <p class="section-title">
@@ -130,7 +130,7 @@
                           <p class="h5">
                             {{ product.title }}
                           </p>
-                      	</div>
+                        </div>
                       {% endif %}
                     </a>
                   </div>

@@ -26,7 +26,7 @@
 }  
   
 .site-header__logo {
-	font-size: 2rem;
+  font-size: 2rem;
     margin-top: 4%;
 }  
 
@@ -34,9 +34,9 @@
 
 <header class="site-header" role="banner">
       <div class="header-stripbar medium-down--hide">
-      	<div class="wrapper">
+        <div class="wrapper">
           <div class="grid--full grid--table">
-          	{% if settings.enable_strip_text %}
+            {% if settings.enable_strip_text %}
               <div class="navbar-striptext left">
                 <a href="{{ settings.strip_url }}">{{ settings.strip_text }}{% if settings.strip_display_user_country %}&nbsp;<span class="countryName"></span>&nbsp;<span class="flagImg f32"></span>{% endif %}</a>
               </div>
@@ -48,7 +48,7 @@
                 </li>
               {% endif %}
               {% for link in linklists[settings.strip_linklist].links %}
-              	<li class="top-nav-link"><a  href="{{ link.url }}">{{ link.title }}</a></li>
+                <li class="top-nav-link"><a  href="{{ link.url }}">{{ link.title }}</a></li>
               {% endfor %}
               {% if shop.customer_accounts_enabled %}
                 {% if customer %}
@@ -69,11 +69,11 @@
                   </li>
                 {% endif %}
               {% else %}
-              	<li class="top-nav-link my-account {% if template == "cart" %}no-margin{% endif %}">&nbsp;</li>
+                <li class="top-nav-link my-account {% if template == "cart" %}no-margin{% endif %}">&nbsp;</li>
               {% endif %}
               {% if template !="cart" %}
               <li class="top-nav-link cart__hover">
-              	<a href="/cart" class="top-nav-link site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
+                <a href="/cart" class="top-nav-link site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
                   <img src="{{ 'cart_icon_color.png' | asset_url }}" alt="Cart" class="no-border ratina-img cart--icon-desktop" />
                   <span class="CartCount">{{ cart.item_count }}</span>
                 </a>
@@ -156,7 +156,7 @@
         </div>
       </div>
       <div class="wrapper main-header medium-down--hide">
-		    <div class="grid--full grid--table">
+        <div class="grid--full grid--table">
           <div class="grid__item {% if settings.enable_header_promotion or settings.enable_header_fb_page %}{% if settings.enable_header_contact %}large--one-quarter{% else %}large--one-third{% endif %}{% else %}large--one-third{% endif %}">
             {% if template == 'index' %}
               <h1 class="site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
@@ -231,7 +231,7 @@
           {% if template !="cart" %}
            
               <div class="top-nav-link cart__hover">
-              	<a href="/cart" class="top-nav-link site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
+                <a href="/cart" class="top-nav-link site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
                   <img src="{{ 'cart_icon_color.png' | asset_url }}" alt="Cart" class="no-border ratina-img cart--icon-desktop" />
                   <span class="CartCount">{{ cart.item_count }}</span>
                 </a>
@@ -435,7 +435,7 @@
       "label": "Sticky header cart count text",
       "default": "#6e797a"
       },
-	{
+  {
       "type": "color",
       "id": "header-cart-background",
       "label": "Header cart background",
@@ -462,7 +462,7 @@
 {% endstylesheet %}
 
 {% comment %}
-	{
+  {
        "type": "image_picker",
         "id": "sticky_cart_image",
         "label": "Sticky Cart Image"
@@ -485,7 +485,7 @@
         "label": "Display User Country Flag",
         "default": true
       },
-	{
+  {
       "type": "color",
       "id": "popup-cart-text-color",
       "label": "Popup promo text color",

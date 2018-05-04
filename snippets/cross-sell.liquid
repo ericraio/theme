@@ -1,9 +1,9 @@
 {% if template contains 'product' %}
-  	{% assign cscurrentpage = 'product' %}
+    {% assign cscurrentpage = 'product' %}
 {% endif %}
 {% if template == 'cart' %}
-  	{% assign cscurrentpage = 'cart' %}
-	{% assign cssmartcart = 'on' %}
+    {% assign cscurrentpage = 'cart' %}
+  {% assign cssmartcart = 'on' %}
 {% endif %}
 
 
@@ -13,21 +13,21 @@
 
 {% assign cartitems = ''%}
 {% for item in cart.items %}
-	{% if forloop.first == true %}
-		{% capture cartitems %}{{ item.product.handle }}{% endcapture %}
-	{% else %}
-		{% capture cartitems %}{{ cartitems }},{{ item.product.handle }}{% endcapture %}
-	{% endif %}
+  {% if forloop.first == true %}
+    {% capture cartitems %}{{ item.product.handle }}{% endcapture %}
+  {% else %}
+    {% capture cartitems %}{{ cartitems }},{{ item.product.handle }}{% endcapture %}
+  {% endif %}
 {% endfor %}
 
 {% if cartitems %}
         var cartitems = '{{ cartitems }}';
-		cartitems = cartitems.split(',');
+    cartitems = cartitems.split(',');
 {% else %}
-		var cartitems = '';
+    var cartitems = '';
 {% endif %}
 
-	  //objects
+    //objects
     var xsellitems = {};
     var xsellproductdata = [];    
 
@@ -177,37 +177,37 @@
       document.getElementsByTagName("head")[0].appendChild(script);
     };
 
-	var xsappinitfrontend = function(jQueryxsAppxsApp)
+  var xsappinitfrontend = function(jQueryxsAppxsApp)
     {
-	  {% if cscurrentpage == 'product' %}
-	    //First of all, see if this product has any handpicked crosssell items
-	    if(crosssellshowdefault != '4')
-	    {
-	      {% if product.metafields.productDetails.crosssell != null %}
-	        //See if the selected product has any cross-sell items
-	        xstmpdata = eval({{ product.metafields.productDetails.crosssell | json }});
-	        if(crossselltitleproductpage.length) // if a title has been selected
-	        {
-	          xstmptitle = crossselltitleproductpage;
-	        }
-	      {% endif %}
-	    }
-	    if(crosssellshowdefault == '1' || (crosssellshowdefault == '2' && xstmpdata == ''))
-	    {
-	      //Show default cross-sell items on all product pages? Override all
-	      //See if any default cross-sell items have been selected for the product page
-	      {% if shop.metafields.shopCrosssell.default != null %}
-	        xstmpdata = eval({{ shop.metafields.shopCrosssell.default | json }});
-	        if(crossselltitleproductpagedefault.length) // if a default products title has been selected
-	        {
-	          xstmptitle = crossselltitleproductpagedefault;
-	        }
-	      {% endif %}
-	    }
-	  {% else %}
-	    //We are not on the product page. //Has the merchant turned on checkout cross-sell items?
-	    if(crosssellshowcheckout == '2')
-	    {
+    {% if cscurrentpage == 'product' %}
+      //First of all, see if this product has any handpicked crosssell items
+      if(crosssellshowdefault != '4')
+      {
+        {% if product.metafields.productDetails.crosssell != null %}
+          //See if the selected product has any cross-sell items
+          xstmpdata = eval({{ product.metafields.productDetails.crosssell | json }});
+          if(crossselltitleproductpage.length) // if a title has been selected
+          {
+            xstmptitle = crossselltitleproductpage;
+          }
+        {% endif %}
+      }
+      if(crosssellshowdefault == '1' || (crosssellshowdefault == '2' && xstmpdata == ''))
+      {
+        //Show default cross-sell items on all product pages? Override all
+        //See if any default cross-sell items have been selected for the product page
+        {% if shop.metafields.shopCrosssell.default != null %}
+          xstmpdata = eval({{ shop.metafields.shopCrosssell.default | json }});
+          if(crossselltitleproductpagedefault.length) // if a default products title has been selected
+          {
+            xstmptitle = crossselltitleproductpagedefault;
+          }
+        {% endif %}
+      }
+    {% else %}
+      //We are not on the product page. //Has the merchant turned on checkout cross-sell items?
+      if(crosssellshowcheckout == '2')
+      {
 
           {% if shop.metafields.shopCrosssell.settings != null %}
            {% assign crosssellsettings = shop.metafields.shopCrosssell.settings | remove: "[{" | remove: "}]" | strip | replace: '","', '"|||"' | split: '|||' %}
@@ -250,13 +250,13 @@
               xstmptitle = crossselltitlecheckoutpage;
             }
 
-	    }
-	  {% endif %}
+      }
+    {% endif %}
 
-		if(xstmpdata)
-		{
+    if(xstmpdata)
+    {
 
-          	function buildxsells(xsdata)
+            function buildxsells(xsdata)
             {
 
               // 1. Declare an array of Deferred objects
@@ -283,7 +283,7 @@
               // 3.1. Function called by the loop to create a Deferred object (data is numeric)
               function processItem(xsitem) {
 
-                var xsorder = xsitem["order"];          		          
+                var xsorder = xsitem["order"];                        
 
                 // 3.1.1. Create the Deferred object and output some debug
                 var dfd = jQueryxsApp.Deferred();
@@ -323,21 +323,21 @@
               // 4.1. Function called when all deferred are resolved
               function everythingDone(){
                 // 4.1.1. Do some debug trace
-				    buildxsellsoutput(xsellproductdata);
+            buildxsellsoutput(xsellproductdata);
               }
             }
 
 
-          	function buildxsellsoutput(xsellitems)
+            function buildxsellsoutput(xsellitems)
             {
-              	var xsrandomize = false;
+                var xsrandomize = false;
                 {% if cscurrentpage == 'product' %}
-              		if(xsrandomizeproductpage)
+                  if(xsrandomizeproductpage)
                     {
                       xsrandomize = true;
                     }
 
-              	{% else if cscurrentpage == 'cart' %}
+                {% else if cscurrentpage == 'cart' %}
                     if(xsrandomizecartpage)
                     {
                       xsrandomize = true;
@@ -345,7 +345,7 @@
 
                 {% endif %}
               
-              	if(xsrandomize)
+                if(xsrandomize)
                 {
                   //randomize the products
                   xsellitems = xsshuffle(xsellitems);
@@ -360,20 +360,20 @@
 
                 var xscompareatprice = '';
                 var xscompareatpricestring = '';
-              	var xssalepricestring = '';
-              	var xspriceoutput = '';
+                var xssalepricestring = '';
+                var xspriceoutput = '';
                 var xssalebadge = '<span class="badge badge--sale"><span class="badge__text">SALE</span></span>';
-              	var xssalebadgeoutput = '';
+                var xssalebadgeoutput = '';
                 var saleclass = ' xs-sale';
                 var fromlabel = '<em>from</em>';
 
                 var xsprice = '';
 
-              	for(var x=0; x < numproducts; x++)
-				{
-                  	var xsproductdata = xsellitems[x];
+                for(var x=0; x < numproducts; x++)
+        {
+                    var xsproductdata = xsellitems[x];
 
-                  	//Show Images
+                    //Show Images
                     if(xsproductdata.images.length > 1)
                     {
                       var csimage = productimageurls(xsproductdata.images[0]);
@@ -390,7 +390,7 @@
                       var csimagetwo = csimage;
                     }
                   
-                  	//Display Vendor
+                    //Display Vendor
                      if(xsdisplayvendor)
                      {                              
                        xsvendoroutput = '<div class="xs-vendor-name"><a href="' + xsproductdata.url +'">' + xsproductdata.vendor + '</a></div>';
@@ -402,26 +402,26 @@
                     xsprice = xsformatMoney(xsproductdata.price, '{{ shop.money_format }}');
 
 
-					//Show price varies label?
+          //Show price varies label?
                     if(xsdisplaypricevarieslabel)
                     {
-                    	if(xsproductdata.price_varies)
-                      	{
+                      if(xsproductdata.price_varies)
+                        {
                           xspricevarieslabel = 'From: ';
-                      	}
-                      	else
-                      	{
-                        	xspricevarieslabel = '';
-                      	}
+                        }
+                        else
+                        {
+                          xspricevarieslabel = '';
+                        }
                     }
 
                     xspriceoutput = '<div class="money"><a href="' + xsproductdata.url +'">' + xspricevarieslabel + xsprice + '</a></div>';
 
                     if(xsdisplaycompareatprice)
                     {
-  	                  if(!xsproductdata.price_varies && (xsproductdata.compare_at_price > xsproductdata.price))
-        	            {
-            	            xscompareatprice = xsformatMoney(xsproductdata.compare_at_price, '{{ shop.money_format }}');
+                      if(!xsproductdata.price_varies && (xsproductdata.compare_at_price > xsproductdata.price))
+                      {
+                          xscompareatprice = xsformatMoney(xsproductdata.compare_at_price, '{{ shop.money_format }}');
                           xscompareatpricestring = '<span class="xs-compare-at-price">' + xscompareatprice + '</span>';
                           xssalepricestring = '<span class="xs-sale-price"><a href="' + xsproductdata.url +'">' + xsprice + '</a></span>';
                           xspriceoutput = '<div class="money' + saleclass + '">' + xscompareatpricestring + ' ' + xspricevarieslabel + xssalepricestring + '</div>';
@@ -435,7 +435,7 @@
                       {
                         xssalebadgeoutput = xssalebadge;
                       }
-					  else
+            else
                       {
                         xssalebadgeoutput = '';
                       }                      
@@ -444,52 +444,52 @@
                     xselloutput += '<li data-xsorder="' + xsproductdata["order"] + '">'
                                 + '<div class="image">'
                                 + '<a href="' + xsproductdata.url +'">'
-                  			      + xssalebadgeoutput
+                              + xssalebadgeoutput
                                 + '<img src="' + csimage + '" />'
                                 + '</a>'
                                 + '</div>'
                                 + '<div class="producttitle">'
                                 + '<a href="' + xsproductdata.url + '">' + xsproductdata.title + '</a>'
                                 + '</div>'
-                  			      + xsvendoroutput
+                              + xsvendoroutput
                               + xspriceoutput
                                 + '</li>';
-				}
+        }
 
                 jQueryxsApp('#cross-sell').append('<h3 class="crossselltitle">' + xstmptitle + '</h3><ul class="cross-sell">' + xselloutput + '</ul>');
             }
 
-			//Set the maximum number of items that should be shown?
-		    if (xstmpdata.length && (xstmpdata[0] !== ''))
-		    {
-          	buildxsells(xstmpdata);
-			  }
+      //Set the maximum number of items that should be shown?
+        if (xstmpdata.length && (xstmpdata[0] !== ''))
+        {
+            buildxsells(xstmpdata);
+        }
           else
           {
-           	//There are no cross-sells to display
-            	var elem = document.getElementById("cross-sell");
-			        elem.parentNode.removeChild(elem);
+            //There are no cross-sells to display
+              var elem = document.getElementById("cross-sell");
+              elem.parentNode.removeChild(elem);
           }
-		}
-		//Cross-sell settings
-		var settingsoutput = '';
-		jQueryxsApp.each(crosssellsettings[0], function(key, value){
-			settingsoutput += '<input type="hidden" name="' + key + '" id="cs_' + key + '" value="' + value + '" />';
-		});
-		jQueryxsApp('#cross-sell').append(settingsoutput);
-	}
+    }
+    //Cross-sell settings
+    var settingsoutput = '';
+    jQueryxsApp.each(crosssellsettings[0], function(key, value){
+      settingsoutput += '<input type="hidden" name="' + key + '" id="cs_' + key + '" value="' + value + '" />';
+    });
+    jQueryxsApp('#cross-sell').append(settingsoutput);
+  }
 
-	if ((typeof jQueryxsApp === 'undefined') || (parseFloat(jQueryxsApp.fn.jquery) < 3))
-	{
-	  xsloadScript('//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js', function(){
-	    jQueryxsApp = jQuery.noConflict(true);
-	    xsappinitfrontend(jQueryxsApp);
-	  });
-	}
-	else
-	{
-	  xsappinitfrontend(jQueryxsApp);
-	}
+  if ((typeof jQueryxsApp === 'undefined') || (parseFloat(jQueryxsApp.fn.jquery) < 3))
+  {
+    xsloadScript('//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js', function(){
+      jQueryxsApp = jQuery.noConflict(true);
+      xsappinitfrontend(jQueryxsApp);
+    });
+  }
+  else
+  {
+    xsappinitfrontend(jQueryxsApp);
+  }
 
 })();
 

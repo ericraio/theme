@@ -91,8 +91,8 @@
     }    
       @media screen and (max-width: 768px) {
     .home_creative_banner.wrapper .item {
-  	  padding-left: 3%;
- 	  padding-right: 3%;
+      padding-left: 3%;
+    padding-right: 3%;
       width: 50%;
       margin-top:10px;
     }
@@ -154,7 +154,7 @@
           </a>
         </p>
       </div>
-	</div>
+  </div>
 {% endfor %}
 </div> 
 {% endif %}
@@ -162,7 +162,7 @@
 
 
 {% schema %}
-	{
+  {
     "name": "Creative Banner",
     "class": "index-section banner-section index-section--flush",
     "settings": [
@@ -177,13 +177,13 @@
       }
     ],
     "max_blocks": 4,
-	"blocks": [
-		{
-		"type":"slides",
-		"name": "Creative Banner",
+  "blocks": [
+    {
+    "type":"slides",
+    "name": "Creative Banner",
         "settings": [
-			 
-			 {
+       
+       {
                 "type": "text",
                 "id": "slider_image_headline",
                 "label": "Enter Headline"
@@ -208,10 +208,10 @@
                 "id": "slider_cta_txt",
                 "label": "Enter CTA Text"
               }
-		]
-		}
+    ]
+    }
 
-	],
+  ],
     "presets": [{
           "name": "Creative Banner",
           "category": "Image",
@@ -234,7 +234,7 @@
 
           ]
         }],
-	  
+    
     
     "settings": [
       {
@@ -248,5 +248,5 @@
         ]
       }
     ]
-	}
+  }
 {% endschema %}

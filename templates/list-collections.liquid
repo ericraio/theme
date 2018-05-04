@@ -1,13 +1,13 @@
 <div class="wrapper">
   {% include 'breadcrumb' %}
   {% unless settings.collections_products %}
-  	<div class="section-header">
+    <div class="section-header">
       <p class="h1 section-header__left">{{ 'collections.general.title' | t }}</p>
     </div>
   {% endunless %}
   {% for link in linklists.all-collections.links %}
-  	{% assign collection = link.object %}
-  	{% if settings.collections_products %}
+    {% assign collection = link.object %}
+    {% if settings.collections_products %}
       {% unless collection.handle == 'frontpage' %}
         {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
         <div class="section-header">
@@ -26,7 +26,7 @@
         {% unless forloop.last %}<hr>{% endunless %}
       {% endunless %}
     {% else %}
-  	  {% unless collection.handle == 'frontpage' %}
+      {% unless collection.handle == 'frontpage' %}
         <div class="grid__item large--one-quarter medium--one-half custom--width-one-half collection-list">
           <div class="grid__product-image text-center">
             <a href="{{ collection.url }}" class="grid__image">
@@ -44,7 +44,7 @@
             </p>
           </div>
         </div>
-  	  {% endunless %}
-  	{% endif %}
+      {% endunless %}
+    {% endif %}
   {% endfor %}
 </div>

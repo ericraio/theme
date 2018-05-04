@@ -18,7 +18,7 @@
         {% if blog.comments_enabled? %}<span class="comment blog-data-inline floatnone"><i class="fa fa-comment"></i> {{ 'blogs.comments.with_count' | t: count: article.comments_count }}</span>{% endif %}
       </div>
     </header>
-	{% if article.image %}
+  {% if article.image %}
     <a class="article__featured-image" href="{{ article.url }}">
       {{ article | img_url: '1024x1024' | img_tag: article.title }}
     </a>
